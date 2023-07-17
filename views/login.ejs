@@ -1,0 +1,21 @@
+<%- include ('_layouts/header') %>
+
+<h1><%= title %></h1>
+
+<p class="">Demo Username: John, Password: John@1234</p>
+
+<form action="/users/login" method="POST">
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" class="form-control" placeholder="username" value="<%= typeof username != 'undefined' ? username : '' %>">
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password" value="<%= typeof password != 'undefined' ? password : '' %>">
+    </div>
+
+    <button type="Submit" class="btn btn-default">Log In</button>
+</form>
+
+ <%- include ('_layouts/footer') %>

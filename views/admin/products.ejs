@@ -1,0 +1,54 @@
+<%- include ('../_layouts/admin_header.ejs') %>
+
+<h2 class="page-title">Products</h2>
+<a href="/admin/add-product" class="btn btn-primary">Add a new product</a>
+<br />
+<br />
+
+<% if(productCount > 0) { %>
+
+<table class="table table-striped align-middle">
+  <thead>
+    <tr class="home">
+      <th>Product</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Image</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% products.forEach(product => { %>
+    <tr>
+      <td><%= product.title %></td>
+      <td><%= parseFloat(product.price).toFixed(2) %></td>
+      <td><%= product.category %></td>
+      <td>
+        <% if(product.image == 'undefined'){ %>
+        <img src="/images/noimage.png" id="noimage" alt="No Image" />
+        <% } else { %>
+        <img src="/product_images/<%= product._id %>/<%= product.image %>" id="productImage" />
+        <% } %>
+      </td>
+      <td>
+        <a class="btn btn-warning" href="/admin/edit-product/<%= product._id %>"
+          >Edit</a
+        >
+      </td>
+      <td>
+        <a
+          class="btn btn-danger confirmDeletion"
+          href="/admin/delete-product/<%= product._id %>"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% } else { %>
+<h3 class="text-center">There are no products</h3>
+<% } %> <%- include ('../_layouts/admin_footer.ejs') %>
